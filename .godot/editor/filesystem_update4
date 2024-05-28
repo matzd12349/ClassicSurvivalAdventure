@@ -1,0 +1,15 @@
+res://Scenes/main.tscn
+res://Scripts/AttackRay.gd
+res://Scripts/Health.gd
+res://Scripts/Player.gd
+res://Scripts/Player/PlayerAnimTree.gd
+res://Scripts/AnimationTree.gd
+res://Scenes/Main.tscn
+res://Scenes/Player.tscn
+res://Prefabs/AttackRay.tscn
+res://Prefabs/Health.tscn
+res://Scripts/Player/Player.gd
+res://Scripts/Enemy.gd
+res://Models/Animations/Animations.res
+res://Prefabs/Enemy.tscn
+res://Scenes/Enemy.tscn

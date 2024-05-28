@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dseo478flb4x8"]
+
+[ext_resource type="PackedScene" uid="uid://sfoq6nbqtjh3" path="res://Scenes/Player.tscn" id="1_4f8r7"]
+[ext_resource type="PackedScene" uid="uid://ykwgdwepmr2j" path="res://Scenes/Enemy.tscn" id="2_u8blq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qikxe"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q6qny"]
+material = SubResource("StandardMaterial3D_qikxe")
+size = Vector2(20, 20)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_x7l1a"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Characters" type="Node" parent="."]
+
+[node name="Player" parent="Characters" instance=ExtResource("1_4f8r7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.07215)
+
+[node name="Camera3D" type="Camera3D" parent="Characters/Player"]
+transform = Transform3D(-1, 0, -8.74228e-08, -2.56577e-08, 0.955962, 0.29349, 8.35729e-08, 0.29349, -0.955962, 0, 2.90154, -2.01038)
+
+[node name="Enemy" parent="Characters" instance=ExtResource("2_u8blq")]
+
+[node name="Enviroment" type="Node" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment"]
+mesh = SubResource("PlaneMesh_q6qny")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/MeshInstance3D"]
+shape = SubResource("WorldBoundaryShape3D_x7l1a")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Enviroment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.57145, 8.0059)
+light_energy = 14.0

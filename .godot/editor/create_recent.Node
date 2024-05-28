@@ -1,0 +1,8 @@
+SpotLight3D
+MeshInstance3D
+Node
+Camera3D
+CollisionShape3D
+AnimationTree
+CharacterBody3D
+RayCast3D
