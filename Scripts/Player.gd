@@ -95,5 +95,4 @@ func SpeedAnimationCheck(delta) -> void:
 
 #Check if moving
 func IsMoving() -> bool:
-
-	return true
+	return Input.is_action_pressed("Forward") || Input.is_action_pressed("Backward") || Input.is_action_pressed("TurnLeft") || Input.is_action_pressed("TurnRight")

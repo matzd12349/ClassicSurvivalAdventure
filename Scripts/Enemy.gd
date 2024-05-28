@@ -29,6 +29,8 @@ func _physics_process(delta: float) -> void:
 			detectPlayer = OutsideRange()
 		_:
 			curAnim = IDLE
+	animTree.AnimationChange(delta,curAnim)
+
 
 #MOVEMENT
 func MoveEnemy(delta: float,dir: Vector3) -> void:

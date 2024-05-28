@@ -13,3 +13,6 @@ res://Scripts/Enemy.gd
 res://Models/Animations/Animations.res
 res://Prefabs/Enemy.tscn
 res://Scenes/Enemy.tscn
+res://Models/Animations/Idle.res
+res://Models/Animations/Run.res
+res://Models/Animations/Walk.res
