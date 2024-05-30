@@ -5,6 +5,7 @@ enum {IDLE, WALK, RUN, HURT, AIM, ATTACK, DEAD}
 
 #animation variable to blend animations together
 @export var blendSpeed: int = 5
+
 #variables for the blend amounts for 
 var walkVal: float = 0
 var runVal: float = 0

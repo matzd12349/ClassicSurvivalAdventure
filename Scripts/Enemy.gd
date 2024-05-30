@@ -4,31 +4,59 @@ extends CharacterBody3D
 enum{IDLE,WALK,RUN,HURT,AIM,ATTACK,DEAD} #Define animation states
 var curAnim: int = IDLE #set current animation state
 @onready var animTree: AnimationTree = $AnimationTree #Animation Tree node for blending animations
+@onready var health: Node = $Health #Health script
 
-#Get Player Node
-@onready var player = $"../Player"
+#Get Player Node and set variables for detection and distance
+@onready var player = $"../Player" #Player node, same tree as player in main scene
 var detectPlayer: bool = false #if player is detected
 @export var detectDistance: float = 5.0 #Distance to detect Player
 @export var stopDetection: float = 10.0 #Stops following Player
 
 const WALKSPEED: float = 1.5
-const TURNSPEED: float = 1.5
+const TURNSPEED: float = 2.0
+
+#Attack related Variables
+@export var atkCooldown: float = 1.0 #time in seconds
+@export var atkTimer: float = 0.0 #time till next attack
+@export var atkRange: float = 1.0 #distance to judge weather to attack
+@onready var atkRay: RayCast3D = $AttackRay
 
 #Main funciton / process every delta (time) interval
 func _physics_process(delta: float) -> void:
 	
+	#check if Enemy is still alive
+	if !health.IsAlive():
+		curAnim = DEAD
+		self.get_node("EnemyCollider").disabled = true
+		animTree.AnimationChange(delta, curAnim)
+		return
+
+	#Cooldown Timer for Attack / decrement timer
+	if atkTimer > 0:
+		atkTimer -= delta
+	elif atkTimer <= 0 && curAnim == ATTACK:
+		curAnim = IDLE
+
 	#call for player detection
 	detectPlayer = PlayerDetected()
 	#Get direction to player
 	var direction: Vector3 = (player.global_transform.origin - global_transform.origin).normalized()
 
+	#See if player is detected and start movment
 	match true:
 		detectPlayer:
-			curAnim = WALK
-			MoveEnemy(delta,direction)
-			detectPlayer = OutsideRange()
+			if curAnim == ATTACK:
+				pass
+			else:
+				MoveEnemy(delta,direction)
+				#see if distance to player is within attack range
+				if global_transform.origin.distance_to(player.global_transform.origin) <= atkRange:
+					EnemyAttack(direction)
+				detectPlayer = OutsideRange()
 		_:
 			curAnim = IDLE
+	
+	#call method from animation tree that sets the new animation blends
 	animTree.AnimationChange(delta,curAnim)
 
 
@@ -49,11 +77,14 @@ func MoveEnemy(delta: float,dir: Vector3) -> void:
 	#variable of the adjusted walkspeed of enemy
 	var newSpeed: float = WALKSPEED * (1 - differenceAngle / PI)
 
-	#move the Player forward
+	#move the enemy forward
 	global_transform.origin += forward * newSpeed * delta
 
 	#call rotation function to turn the Enemy
 	RotateEnemy(delta, dir, targetAngle, currentAngle)
+
+	#set curAnim to WALK
+	curAnim = WALK
 
 #ROTATION
 func RotateEnemy(delta: float,dir: Vector3, endAngle: float, curAngle: float) -> void:
@@ -73,3 +104,16 @@ func PlayerDetected() -> bool:
 func OutsideRange() -> bool:
 	var distance: float = global_transform.origin.distance_to(player.global_transform.origin)
 	return distance >= stopDetection
+
+func EnemyAttack(dir: Vector3) -> void:
+	if atkTimer <= 0: #check if cooldown Timer has elapsed
+		#see if player is in front of enemy
+		var angle: float = atan2(dir.x, dir.z) - rotation.y
+		angle = abs(wrapf(angle, -PI, PI)) #Normalize angle range in radians
+		if angle <= deg_to_rad(22.5): #45 degrees / 22.5 on either side
+			curAnim = ATTACK
+			atkTimer = atkCooldown #reset cooldown
+			print("enemy attack initiated, cooldown started again")
+
+func DisableAttackAnimation() -> void:
+	curAnim = IDLE

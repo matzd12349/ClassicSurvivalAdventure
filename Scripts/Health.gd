@@ -36,3 +36,4 @@ func IsAlive() -> bool:
 # Method to set max health and reset current health
 func SetMaxHealth(newMaxHealth: int) -> void:
 	maxHealth = newMaxHealth
+	print(name, ": ", get_instance_id(), " health increased by ", newMaxHealth - maxHealth)

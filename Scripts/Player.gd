@@ -4,6 +4,7 @@ extends CharacterBody3D
 enum{IDLE,WALK,RUN,HURT,AIM,ATTACK,DEAD} #Define animation states
 var curAnim: int = IDLE #set current animation state
 @onready var animTree: AnimationTree = $AnimationTree #Animation Tree node for blending animations
+@onready var health: Node = $Health #Health node and class script
 
 #Movement Related Variables
 const WALKSPEED: float = 3.0
@@ -17,16 +18,38 @@ const AIMSPEED: float = 60 #Degrees of rotation
 var currentSpeed: float = 0
 var currentTurn: float = 0
 
+#Attack related Variables
+@export var atkCooldown: float = 1.0 #Time in seconds
+var atkTimer: float = 0.0 #tracks time till next shot
+#Attack Ray for initiating attack of enemy
+@onready var atkRay: RayCast3D = $AttackRay
+
 #Main function / processes severy delta (time) interval
 func _physics_process(delta: float) -> void:
+
+	#check health
+	if health.currentHealth > 0:
+		pass
+	else:
+		curAnim = DEAD
+		self.get_node("PlayerCollider").disabled = true
+		animTree.AnimationChange(delta, curAnim)
+		return
+
+	#update cooldown Timer for Attack
+	if atkTimer > 0.0:
+		atkTimer -= delta
 
 	#set speed and check current animation
 	SpeedAnimationCheck(delta)
 
 	#Check if Aiming
-	if curAnim != AIM:
-		#Move Player
-		MovePlayer(currentSpeed)
+	match curAnim:
+		AIM:
+			#Move Player
+			PlayerAttack()
+		_:
+			MovePlayer(currentSpeed)
 	
 	#Rotate player character
 	TurnPlayer(delta)
@@ -34,19 +57,18 @@ func _physics_process(delta: float) -> void:
 #MOVEMENT
 func MovePlayer(speed: float) -> void:
 
-	var inputDir: Vector2 = Input.get_vector("TurnLeft", "TurnRight", "Forward", "Backward")
-	var direction: Vector3 = (transform.basis * Vector3(0, 0, inputDir.y)).normalized()
+	#get direction of player
+	var direction: Vector3 = transform.basis.z
 
-	#perpetual movment when...
-	if direction: #when pressed
-		velocity.x = -direction.x * speed
-		velocity.z = -direction.z * speed
+	#check Input for forward / backward
+	if Input.is_action_pressed("Forward"):
+		velocity = direction * speed
+	elif Input.is_action_pressed("Backward"):
+		velocity = -direction * speed
+	else:
+		velocity = Vector3.ZERO
 
-	else: #when not pressed
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
-	
-	#Move and Slide function does not handle rotation
+	#move and slide function
 	move_and_slide()
 
 #ROTATION
@@ -96,3 +118,13 @@ func SpeedAnimationCheck(delta) -> void:
 #Check if moving
 func IsMoving() -> bool:
 	return Input.is_action_pressed("Forward") || Input.is_action_pressed("Backward") || Input.is_action_pressed("TurnLeft") || Input.is_action_pressed("TurnRight")
+
+#Attack Input
+func PlayerAttack() -> void:
+	if Input.is_action_just_pressed("Action"):
+		#check if cooldown Timer has finished
+		if atkTimer <= 0.0:
+			#perfomr attack
+			if curAnim == AIM:	
+				atkRay.CallTakeDamage()
+			atkTimer = atkCooldown

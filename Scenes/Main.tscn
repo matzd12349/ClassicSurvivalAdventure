@@ -22,6 +22,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.07215)
 transform = Transform3D(-1, 0, -8.74228e-08, -2.56577e-08, 0.955962, 0.29349, 8.35729e-08, 0.29349, -0.955962, 0, 2.90154, -2.01038)
 
 [node name="Enemy" parent="Characters" instance=ExtResource("2_u8blq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.03691, 0, 0)
+
+[node name="Enemy2" parent="Characters" instance=ExtResource("2_u8blq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.42695, 0, 0)
 
 [node name="Enviroment" type="Node" parent="."]
 
@@ -31,6 +35,5 @@ mesh = SubResource("PlaneMesh_q6qny")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/MeshInstance3D"]
 shape = SubResource("WorldBoundaryShape3D_x7l1a")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Enviroment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.57145, 8.0059)
-light_energy = 14.0
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviroment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8, 0)
