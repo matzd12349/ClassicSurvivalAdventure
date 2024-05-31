@@ -1,0 +1,18 @@
+G:\Godot\ClassicSurvivalAdventure\.godot\mono\temp\bin\Debug\Classic Survival Horror.deps.json
+G:\Godot\ClassicSurvivalAdventure\.godot\mono\temp\bin\Debug\Classic Survival Horror.runtimeconfig.json
+G:\Godot\ClassicSurvivalAdventure\.godot\mono\temp\bin\Debug\Classic Survival Horror.dll
+G:\Godot\ClassicSurvivalAdventure\.godot\mono\temp\bin\Debug\Classic Survival Horror.pdb
+G:\Godot\ClassicSurvivalAdventure\.godot\mono\temp\bin\Debug\GodotSharp.dll
+G:\Godot\ClassicSurvivalAdventure\.godot\mono\temp\bin\Debug\GodotSharpEditor.dll
+G:\Godot\ClassicSurvivalAdventure\.godot\mono\temp\obj\Debug\Classic Survival Horror.csproj.AssemblyReference.cache
+G:\Godot\ClassicSurvivalAdventure\.godot\mono\temp\obj\Debug\Classic Survival Horror.GeneratedMSBuildEditorConfig.editorconfig
+G:\Godot\ClassicSurvivalAdventure\.godot\mono\temp\obj\Debug\Classic Survival Horror.AssemblyInfoInputs.cache
+G:\Godot\ClassicSurvivalAdventure\.godot\mono\temp\obj\Debug\Classic Survival Horror.AssemblyInfo.cs
+G:\Godot\ClassicSurvivalAdventure\.godot\mono\temp\obj\Debug\Classic Survival Horror.csproj.CoreCompileInputs.cache
+G:\Godot\ClassicSurvivalAdventure\.godot\mono\temp\obj\Debug\Classic Survival Horror.sourcelink.json
+G:\Godot\ClassicSurvivalAdventure\.godot\mono\temp\obj\Debug\Classic .12189869.Up2Date
+G:\Godot\ClassicSurvivalAdventure\.godot\mono\temp\obj\Debug\Classic Survival Horror.dll
+G:\Godot\ClassicSurvivalAdventure\.godot\mono\temp\obj\Debug\refint\Classic Survival Horror.dll
+G:\Godot\ClassicSurvivalAdventure\.godot\mono\temp\obj\Debug\Classic Survival Horror.pdb
+G:\Godot\ClassicSurvivalAdventure\.godot\mono\temp\obj\Debug\Classic Survival Horror.genruntimeconfig.cache
+G:\Godot\ClassicSurvivalAdventure\.godot\mono\temp\obj\Debug\ref\Classic Survival Horror.dll

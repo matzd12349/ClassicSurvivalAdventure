@@ -12,8 +12,13 @@ config_version=5
 
 config/name="Classic Survival Horror"
 run/main_scene="res://Scenes/Main.tscn"
-config/features=PackedStringArray("4.2", "Forward Plus")
+config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=800
+window/size/viewport_height=600
 
 [dotnet]
 
