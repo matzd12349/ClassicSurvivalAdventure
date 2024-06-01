@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bffwsidi55m0k"]
+
+[ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="1_6jubn"]
+[ext_resource type="Texture2D" uid="uid://b1juokxq732ja" path="res://Art/Background.png" id="2_kkymj"]
+
+[node name="StatusScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6jubn")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(800, 600)
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Background" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(400, 300)
+scale = Vector2(50, 37.5)
+texture = ExtResource("2_kkymj")

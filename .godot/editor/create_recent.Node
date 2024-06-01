@@ -1,10 +1,13 @@
-HBoxContainer
+Sprite2D
+Label
+Node
 VBoxContainer
+Button
+HBoxContainer
 MarginContainer
 DirectionalLight3D
 SpotLight3D
 MeshInstance3D
-Node
 Camera3D
 CollisionShape3D
 AnimationTree

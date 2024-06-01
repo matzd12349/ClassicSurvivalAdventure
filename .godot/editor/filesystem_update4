@@ -1,11 +1,12 @@
+res://MainMenu.gd
+res://Scripts/PauseMenu.gd
+res://Scripts/Player.gd
 res://Scripts/Health.cs
+res://Scripts/AttackRay.cs
+res://Scenes/StatusScreen.tscn
 res://Scenes/Main.tscn
-res://Scripts/Health.gd
 res://Scenes/Player.tscn
 res://Scenes/Enemy.tscn
-res://Scripts/AttackRay.gd
-res://Prefabs/Health.tscn
 res://Prefabs/AttackRay.tscn
-res://Scripts/AttackRay.cs
+res://Scenes/MainMenu.tscn
 res://Models/Animations/Attack.res
-res://Scripts/Player.gd

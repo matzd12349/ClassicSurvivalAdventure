@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dseo478flb4x8"]
+[gd_scene load_steps=7 format=3 uid="uid://dseo478flb4x8"]
 
 [ext_resource type="PackedScene" uid="uid://sfoq6nbqtjh3" path="res://Scenes/Player.tscn" id="1_4f8r7"]
+[ext_resource type="PackedScene" uid="uid://bffwsidi55m0k" path="res://Scenes/StatusScreen.tscn" id="1_4oumx"]
 [ext_resource type="PackedScene" uid="uid://ykwgdwepmr2j" path="res://Scenes/Enemy.tscn" id="2_u8blq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qikxe"]
@@ -12,6 +13,10 @@ size = Vector2(20, 20)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_x7l1a"]
 
 [node name="Main" type="Node3D"]
+
+[node name="UI" type="Node" parent="."]
+
+[node name="StatusScreen" parent="UI" instance=ExtResource("1_4oumx")]
 
 [node name="Characters" type="Node" parent="."]
 
@@ -37,3 +42,5 @@ shape = SubResource("WorldBoundaryShape3D_x7l1a")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviroment"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8, 0)
+
+[node name="Items" type="Node" parent="."]
